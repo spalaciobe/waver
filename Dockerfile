@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-teleop-twist-joy \
     ros-noetic-catkin \
     ros-noetic-urdf \
+    ros-noetic-urdf-sim-tutorial \
     ros-noetic-xacro \
     ros-noetic-tf2-tools
 
