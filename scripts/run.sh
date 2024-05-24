@@ -10,7 +10,8 @@ docker run --privileged --rm -it \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --volume="${PROJECT_ROOT}/catkin_ws:/catkin_ws" \
+    --volume="${PROJECT_ROOT}/waver_ws/src:/waver_ws/src" \
     --volume="$XAUTH:$XAUTH" \
     -t \
     ${DOCKER_IMAGE_NAME} 
+    
