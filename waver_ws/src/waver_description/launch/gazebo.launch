@@ -1,0 +1,5 @@
+<launch>
+    <param name="waver_description" command="$(find xacro)/xacro '$(find waver_description)/urdf/waver.xacro'"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="-urdf -model waver -file $(find my_robot_description)/urdf/waver.xacro"/>
+</launch>
