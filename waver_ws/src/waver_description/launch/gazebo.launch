@@ -1,5 +1,8 @@
 <launch>
-    <param name="waver_description" command="$(find xacro)/xacro '$(find waver_description)/urdf/waver.xacro'"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-    <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="-urdf -model waver -file $(find my_robot_description)/urdf/waver.xacro"/>
+    <param name="robot_description"
+        command="$(find xacro)/xacro '$(find waver_description)/urdf/waver.urdf'" />
+    <node name="gazebo" pkg="gazebo_ros" type="spawn_model"
+        args="-param robot_description -urdf -model waver" />
+    <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="worlds/empty.world" />
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" />
 </launch>
