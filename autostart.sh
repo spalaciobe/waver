@@ -6,6 +6,7 @@ cd waver_ws && catkin_make
 
 source devel/setup.bash
 
-roslaunch waver_description display_test.launch
+roslaunch waver_description display.launch
+# roslaunch waver_description gazebo.launch
 
 exec "$@"
