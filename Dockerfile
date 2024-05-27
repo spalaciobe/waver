@@ -21,6 +21,10 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-xacro \
     ros-noetic-tf2-tools
 
+# Hasky packages
+RUN apt-get update && apt-get install -y \
+    ros-noetic-husky-* 
+
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN echo "~/waver_ws/devel/setup.bash" >> ~/.bashrc
 

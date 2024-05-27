@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver">
 
-    <!-- Define Materials -->
+    <!-- ========= Define Materials ========= -->
     <material name="blue">
         <color rgba="0 0 1 1" />
     </material>
@@ -11,17 +11,18 @@
 
     <xacro:include filename="$(find waver_description)/urdf/waver.xacro" />
 
-    <!-- Dummy Link -->
-    <link name="dummy_link">
+    <!-- ========= Links ========= -->
+
+    <!-- Base Footprint -->
+    <link name="base_footprint">
         <visual>
             <geometry>
-                <box size="0.01 0.01 0.01" />
+                <box size="0.001 0.001 0.001" />
             </geometry>
-            <material name="red" />
         </visual>
         <collision>
             <geometry>
-                <box size="0.01 0.01 0.01" />
+                <box size="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -51,13 +52,6 @@
         </inertial>
     </link>
 
-    <!-- Joint between dummy_link and base_link -->
-    <joint name="dummy_to_base" type="fixed">
-        <parent link="dummy_link" />
-        <child link="base_link" />
-        <origin xyz="0 0 0" rpy="0 0 0" />
-    </joint>
-
     <!-- Top Shell -->
     <link name="top_shell_link">
         <visual>
@@ -77,6 +71,15 @@
             <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05" />
         </inertial>
     </link>
+
+    <!-- ========= Joints ========= -->
+
+    <!-- Joint between base_footprint and base_link -->
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0 0 0.135" rpy="0 0 0" />
+    </joint>
 
     <!-- Joint between base_link and top_shell_link -->
     <joint name="base_to_top" type="fixed">
