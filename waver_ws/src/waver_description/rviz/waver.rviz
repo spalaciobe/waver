@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /RobotModel1
       Splitter Ratio: 0.5
     Tree Height: 379
   - Class: rviz/Time
@@ -113,8 +114,6 @@ Visualization Manager:
           Value: true
         wheel_front_right:
           Value: true
-        world:
-          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -122,19 +121,18 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        world:
-          base_footprint:
-            base_link:
-              top_shell_link:
-                {}
-              wheel_back_left:
-                {}
-              wheel_back_right:
-                {}
-              wheel_front_left:
-                {}
-              wheel_front_right:
-                {}
+        base_footprint:
+          base_link:
+            top_shell_link:
+              {}
+            wheel_back_left:
+              {}
+            wheel_back_right:
+              {}
+            wheel_front_left:
+              {}
+            wheel_front_right:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -170,9 +168,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5302028656005859
+      Pitch: 0.7302035093307495
       Target Frame: <Fixed Frame>
-      Yaw: 0.810383677482605
+      Yaw: 1.1303786039352417
     Saved: ~
 Window Geometry:
   Displays:

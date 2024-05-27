@@ -30,5 +30,5 @@ RUN echo "~/waver_ws/devel/setup.bash" >> ~/.bashrc
 
 COPY ./autostart.sh /
 RUN chmod +x /autostart.sh
-# ENTRYPOINT /autostart.sh
+ENTRYPOINT /autostart.sh
 
