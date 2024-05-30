@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver">
 
-    <xacro:macro name="wheel" params="name xyz rpy">
-        <link name="${name}_link">
+    <xacro:macro name="wheel" params="prefix suffix xyz rpy">
+        <link name="${prefix}_${suffix}_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://waver_description/meshes/wheel_husky.stl" scale="1 1 1"/>
+                    <mesh filename="package://waver_description/meshes/wheel_husky.stl"
+                        scale="1 1 1" />
                 </geometry>
                 <material name="black">
                     <color rgba="0 0 0 1" />
@@ -23,12 +24,31 @@
             </inertial>
         </link>
 
-        <joint name="${name}_joint" type="continuous">
+        <joint name="${prefix}_${suffix}_joint" type="continuous">
             <parent link="base_link" />
-            <child link="${name}_link" />
+            <child link="${prefix}_${suffix}_link" />
             <origin xyz="${xyz}" rpy="${rpy}" />
             <axis xyz="0 0 1" />
         </joint>
+
+        <transmission name="${prefix}_${suffix}_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="${prefix}_${suffix}_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="${prefix}_${suffix}_joint">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+        </transmission>
+
+        <gazebo reference="${prefix}_${suffix}">
+            <mu1 value="200.0" />
+            <mu2 value="100.0" />
+            <kp value="10000000.0" />
+            <kd value="1.0" />
+            <material>Gazebo/Grey</material>
+        </gazebo>
+
     </xacro:macro>
 
 </robot>

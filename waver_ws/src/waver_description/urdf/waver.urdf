@@ -2,9 +2,9 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver">
 
     <!-- ========= Define Materials ========= -->
-    
+
     <material name="gray">
-        <color rgba="0.5 0.5 0.5 1"/>
+        <color rgba="0.5 0.5 0.5 1" />
     </material>
     <material name="black">
         <color rgba="0 0 0 1" />
@@ -24,7 +24,8 @@
     <link name="base_link">
         <visual>
             <geometry>
-                <mesh filename="package://waver_description/meshes/base_link_husky.stl" scale="1 1 1"/>
+                <mesh filename="package://waver_description/meshes/base_link_husky.stl"
+                    scale="1 1 1" />
             </geometry>
             <material name="white" />
         </visual>
@@ -44,7 +45,8 @@
     <link name="top_shell_link">
         <visual>
             <geometry>
-                <mesh filename="package://waver_description/meshes/top_plate_husky.stl" scale="0.8 0.8 0.8"/>
+                <mesh filename="package://waver_description/meshes/top_plate_husky.stl"
+                    scale="0.8 0.8 0.8" />
             </geometry>
             <material name="gray" />
         </visual>
@@ -77,9 +79,16 @@
     </joint>
 
     <!-- Wheels -->
-    <xacro:wheel name="wheel_front_left" xyz="0.25 0.275 0" rpy="0 0 0" />
-    <xacro:wheel name="wheel_front_right" xyz="0.25 -0.275 0" rpy="0 0 0" />
-    <xacro:wheel name="wheel_back_left" xyz="-0.25 0.275 0" rpy="0 0 0" />
-    <xacro:wheel name="wheel_back_right" xyz="-0.25 -0.275 0" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_front" suffix="left" xyz="0.25 0.275 0" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_front" suffix="right" xyz="0.25 -0.275 0" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_back" suffix="left" xyz="-0.25 0.275 0" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_back" suffix="right" xyz="-0.25 -0.275 0" rpy="0 0 0" />
+
+    <!-- Gazebo plugin for ROS Control -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
 
 </robot>
