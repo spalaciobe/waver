@@ -2,10 +2,10 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver">
 
     <xacro:macro name="wheel" params="name xyz rpy">
-        <link name="${name}">
+        <link name="${name}_link">
             <visual>
                 <geometry>
-                    <cylinder length="0.1" radius="0.1" />
+                    <mesh filename="package://waver_description/meshes/wheel_husky.stl" scale="1 1 1"/>
                 </geometry>
                 <material name="black">
                     <color rgba="0 0 0 1" />
@@ -25,7 +25,7 @@
 
         <joint name="${name}_joint" type="continuous">
             <parent link="base_link" />
-            <child link="${name}" />
+            <child link="${name}_link" />
             <origin xyz="${xyz}" rpy="${rpy}" />
             <axis xyz="0 0 1" />
         </joint>

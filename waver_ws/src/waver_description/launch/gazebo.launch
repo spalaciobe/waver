@@ -1,8 +1,18 @@
 <launch>
-    <param name="robot_description"
+    <!-- <param name="robot_description"
         command="$(find xacro)/xacro '$(find waver_description)/urdf/waver.urdf'" />
-    <node name="gazebo" pkg="gazebo_ros" type="spawn_model"
-        args="-param robot_description -urdf -model waver" />
-    <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="worlds/empty.world" />
-    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui"
+        type="joint_state_publisher_gui" /> -->
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <!-- <arg name="world_name" value="$(find husky_gazebo)/worlds/clearpath_playpen.world" /> -->
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <node name="spawning_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model waver -param robot_description" />
 </launch>
