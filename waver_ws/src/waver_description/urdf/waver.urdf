@@ -1,19 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver">
 
-    <!-- ========= Define Materials ========= -->
-
-    <material name="gray">
-        <color rgba="0.5 0.5 0.5 1" />
-    </material>
-    <material name="black">
-        <color rgba="0 0 0 1" />
-    </material>
-    <material name="white">
-        <color rgba="1 1 1 1" />
-    </material>
-
-    <xacro:include filename="$(find waver_description)/urdf/waver.xacro" />
+    <xacro:include filename="$(find waver_description)/urdf/materials.xacro"/>
+    <xacro:include filename="$(find waver_description)/urdf/wheel.xacro" />
+    <xacro:include filename="$(find waver_description)/urdf/util.xacro"/>
 
     <!-- ========= Links ========= -->
 
@@ -24,20 +14,19 @@
     <link name="base_link">
         <visual>
             <geometry>
-                <mesh filename="package://waver_description/meshes/base_link_husky.stl"
-                    scale="1 1 1" />
+                <mesh filename="package://waver_description/meshes/base_link_husky.stl" scale="1 1 1" />
             </geometry>
-            <material name="white" />
+            <xacro:white_material />
         </visual>
         <collision>
             <geometry>
-                <box size="0.5 0.3 0.02" />
+                <mesh filename="package://waver_description/meshes/base_link_husky.stl" scale="1 1 1" />
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.6" />
+            <mass value="${base_mass}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+            <inertia ixx="0.003" ixy="0.0" ixz="0.0" iyy="0.003" iyz="0.0" izz="0.003" />
         </inertial>
     </link>
 
@@ -45,20 +34,19 @@
     <link name="top_shell_link">
         <visual>
             <geometry>
-                <mesh filename="package://waver_description/meshes/top_plate_husky.stl"
-                    scale="0.8 0.8 0.8" />
+                <mesh filename="package://waver_description/meshes/top_plate_husky.stl" scale="1 1 1" />
             </geometry>
-            <material name="gray" />
+            <xacro:gray_material />
         </visual>
         <collision>
             <geometry>
-                <box size="0.5 0.3 0.02" />
+                <mesh filename="package://waver_description/meshes/top_plate_husky.stl" scale="1 1 1" />
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.5" />
-            <origin xyz="0 0 0.1" rpy="0 0 0" />
-            <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05" />
+            <mass value="${top_mass}" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005" />
         </inertial>
     </link>
 
@@ -68,7 +56,7 @@
     <joint name="base_joint" type="fixed">
         <parent link="base_footprint" />
         <child link="base_link" />
-        <origin xyz="0 0 0.16" rpy="0 0 0" />
+        <origin xyz="0 0 ${-(0.03282-0.1651)}" rpy="0 0 0" />
     </joint>
 
     <!-- Joint between base_link and top_shell_link -->
@@ -79,15 +67,47 @@
     </joint>
 
     <!-- Wheels -->
-    <xacro:wheel prefix="wheel_front" suffix="left" xyz="0.25 0.275 0" rpy="0 0 0" />
-    <xacro:wheel prefix="wheel_front" suffix="right" xyz="0.25 -0.275 0" rpy="0 0 0" />
-    <xacro:wheel prefix="wheel_back" suffix="left" xyz="-0.25 0.275 0" rpy="0 0 0" />
-    <xacro:wheel prefix="wheel_back" suffix="right" xyz="-0.25 -0.275 0" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_front" suffix="left" xyz="${base_x_len/2} ${base_y_len/2} ${base_h_len}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_front" suffix="right" xyz="${base_x_len/2} ${-(base_y_len/2)} ${base_h_len}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_back" suffix="left" xyz="${-(base_x_len/2)} ${base_y_len/2} ${base_h_len}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_back" suffix="right" xyz="${-(base_x_len/2)} ${-(base_y_len/2)} ${base_h_len}" rpy="0 0 0" />
 
-    <!-- Gazebo plugin for ROS Control -->
+    <!-- Gazebo -->
+
+    <gazebo reference="top_shell_link">
+        <mu1 value="0.2" />
+        <mu2 value="0.2" />
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <gazebo reference="base_link">
+        <mu1 value="0.2" />
+        <mu2 value="0.2" />
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/</robotNamespace>
+        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+            <robotNamespace></robotNamespace>
+            <updateRate>100.0</updateRate>
+            <leftFrontJoint>wheel_front_left_joint</leftFrontJoint>
+            <rightFrontJoint>wheel_front_right_joint</rightFrontJoint>
+            <leftRearJoint>wheel_back_left_joint</leftRearJoint>
+            <rightRearJoint>wheel_back_right_joint</rightRearJoint>
+            <wheelSeparation>0.5708</wheelSeparation>
+            <wheelDiameter>${2*wheel_radius}</wheelDiameter>
+            <torque>500.0</torque>
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <publishWheelTF>true</publishWheelTF>
+            <publishOdom>true</publishOdom>
+            <publishWheelJointState>true</publishWheelJointState>
+            <covariance_x>0.0001</covariance_x>
+            <covariance_y>0.0001</covariance_y>
+            <covariance_yaw>0.01</covariance_yaw>
+            <broadcastTF>true</broadcastTF>
         </plugin>
     </gazebo>
 
