@@ -1,40 +1,9 @@
 <launch>
-  <include file="$(find waver_description)/launch/gazebo.launch" />
 
-  <param name="robot_description"
-    command="$(find xacro)/xacro '$(find waver_description)/urdf/waver.urdf'" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find waver_description)/urdf/waver.urdf'" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui"
-    type="joint_state_publisher_gui" />
-  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"
-  /> -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="world_to_base_footprint" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0 0 0 0 world base_footprint" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find waver_description)/rviz/waver.rviz" />
-
-  <!-- <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"
-  name="teleop_twist_keyboard"
-    output="screen">
-    <param name="scale_linear" value="1.0" />
-    <param name="scale_angular" value="1.0" />
-  </node> -->
-
-  <rosparam command="load"
-    file="$(find waver_description)/config/joints.yaml"
-    ns="waver_joint_state_controller" />
-
-  <!-- <rosparam command="load"
-    file="$(find waver_description)/config/diff_drive.yaml"
-    ns="waver_diff_drive_controller" /> -->
-
-  <rosparam command="load"
-    file="$(find waver_description)/config/waver_control.yaml"
-    ns="waver_diff_drive_controller" />
-
-  <node name="waver_controller_spawner" pkg="controller_manager" type="spawner"
-    args="waver_joint_state_controller waver_diff_drive_controller" />
-
-
-  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-    <param name="default_topic" value="/waver_diff_drive_controller/cmd_vel" />
-  </node>
 
 </launch>
