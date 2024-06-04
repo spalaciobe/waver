@@ -7,17 +7,30 @@
     <!-- Wheel specifications -->
     <xacro:property name="wheel_radius" value="0.1651" />
     <xacro:property name="wheel_length" value="0.1143" />
-    <xacro:property name="wheel_mass" value="0.5" />
-    <xacro:property name="Iz_wheel" value="${0.5*wheel_mass*wheel_radius*wheel_radius}" />
-    <xacro:property name="I_wheel" value="${-(1/12)*wheel_mass*(3*wheel_radius*wheel_radius+wheel_length*wheel_length)}" />
+    <xacro:property name="wheel_mass" value="2.637" />
+    <xacro:property name="Ixx_wheel" value="0.02467" />
+    <xacro:property name="Iyy_wheel" value="0.04411" />
+    <xacro:property name="Izz_wheel" value="0.02467" />
 
     <!-- Base link specifications -->
-    <xacro:property name="base_mass" value="0.75" />
-    <xacro:property name="base_x_len" value="0.5120" />
-    <xacro:property name="base_y_len" value="0.5708" />
-    <xacro:property name="base_h_len" value="0.03282" />
+    <xacro:property name="base_length" value="0.71" />
+    <xacro:property name="base_width" value="0.41" />
+    <xacro:property name="base_thickness" value="0.025" />
+    <xacro:property name="base_mass" value="6.0" />
+    <xacro:property name="Ixx_base" value="${(base_mass/12) * (base_length * base_length + base_width * base_width)}" />
+    <xacro:property name="Iyy_base" value="${(base_mass/12) * (base_length * base_length + base_thickness * base_thickness)}" />
+    <xacro:property name="Izz_base" value="${(base_mass/12) * (base_width * base_width + base_thickness * base_thickness)}" />
+    <xacro:property name="base_x" value="0.5120" />
+    <xacro:property name="base_y" value="0.5708" />
+    <xacro:property name="base_h" value="0.03282" />
 
     <!-- Top shell specifications -->
-    <xacro:property name="top_mass" value="0.5" />
+    <xacro:property name="top_length" value="0.725" />
+    <xacro:property name="top_width" value="0.59" />
+    <xacro:property name="top_thickness" value="0.006" />
+    <xacro:property name="top_mass" value="2.5" />
+    <xacro:property name="Ixx_top" value="${(top_mass/12) * (top_length * top_length + top_width * top_width)}" />
+    <xacro:property name="Iyy_top" value="${(top_mass/12) * (top_length * top_length + top_thickness * top_thickness)}" />
+    <xacro:property name="Izz_top" value="${(top_mass/12) * (top_width * top_width + top_thickness * top_thickness)}" />
 
 </robot>

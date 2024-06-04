@@ -6,6 +6,12 @@ cd waver_ws && catkin_make
 
 source devel/setup.bash
 
-roslaunch waver_description display.launch
+if [ $1 == "display" ]; then
+    roslaunch waver_description display.launch
+elif [ $1 == "gazebo" ]; then
+    roslaunch waver_gazebo gazebo.launch
+elif [ $1 == "teleop" ]; then
+    rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+fi
 
 exec "$@"

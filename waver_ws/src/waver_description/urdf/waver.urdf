@@ -25,8 +25,8 @@
         </collision>
         <inertial>
             <mass value="${base_mass}" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.003" ixy="0.0" ixz="0.0" iyy="0.003" iyz="0.0" izz="0.003" />
+            <origin xyz="${triple_zero}" rpy="${triple_zero}" />
+            <inertia ixx="${Ixx_base}" ixy="0.0" ixz="0.0" iyy="${Iyy_base}" iyz="0.0" izz="${Izz_base}" />
         </inertial>
     </link>
 
@@ -45,8 +45,8 @@
         </collision>
         <inertial>
             <mass value="${top_mass}" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005" />
+            <origin xyz="${triple_zero}" rpy="${triple_zero}" />
+            <inertia ixx="${Ixx_top}" ixy="0.0" ixz="0.0" iyy="${Iyy_top}" iyz="0.0" izz="${Izz_top}" />
         </inertial>
     </link>
 
@@ -56,7 +56,7 @@
     <joint name="base_joint" type="fixed">
         <parent link="base_footprint" />
         <child link="base_link" />
-        <origin xyz="0 0 ${-(0.03282-0.1651)}" rpy="0 0 0" />
+        <origin xyz="0 0 ${-(base_h - wheel_radius)}" rpy="0 0 0" />
     </joint>
 
     <!-- Joint between base_link and top_shell_link -->
@@ -67,22 +67,26 @@
     </joint>
 
     <!-- Wheels -->
-    <xacro:wheel prefix="wheel_front" suffix="left" xyz="${base_x_len/2} ${base_y_len/2} ${base_h_len}" rpy="0 0 0" />
-    <xacro:wheel prefix="wheel_front" suffix="right" xyz="${base_x_len/2} ${-(base_y_len/2)} ${base_h_len}" rpy="0 0 0" />
-    <xacro:wheel prefix="wheel_back" suffix="left" xyz="${-(base_x_len/2)} ${base_y_len/2} ${base_h_len}" rpy="0 0 0" />
-    <xacro:wheel prefix="wheel_back" suffix="right" xyz="${-(base_x_len/2)} ${-(base_y_len/2)} ${base_h_len}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_front" suffix="left" xyz="${base_x/2} ${base_y/2} ${base_h}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_front" suffix="right" xyz="${base_x/2} ${-(base_y/2)} ${base_h}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_back" suffix="left" xyz="${-(base_x/2)} ${base_y/2} ${base_h}" rpy="0 0 0" />
+    <xacro:wheel prefix="wheel_back" suffix="right" xyz="${-(base_x/2)} ${-(base_y/2)} ${base_h}" rpy="0 0 0" />
 
     <!-- Gazebo -->
 
     <gazebo reference="top_shell_link">
-        <mu1 value="0.2" />
-        <mu2 value="0.2" />
+        <mu1 value="1.0" />
+        <mu2 value="1.0" />
+        <kp value="100000.0" />
+        <kd value="10.0" />
         <material>Gazebo/Gray</material>
     </gazebo>
 
     <gazebo reference="base_link">
-        <mu1 value="0.2" />
-        <mu2 value="0.2" />
+        <mu1 value="1.0" />
+        <mu2 value="1.0" />
+        <kp value="100000.0" />
+        <kd value="10.0" />
         <material>Gazebo/White</material>
     </gazebo>
 
@@ -94,9 +98,9 @@
             <rightFrontJoint>wheel_front_right_joint</rightFrontJoint>
             <leftRearJoint>wheel_back_left_joint</leftRearJoint>
             <rightRearJoint>wheel_back_right_joint</rightRearJoint>
-            <wheelSeparation>0.5708</wheelSeparation>
+            <wheelSeparation>${base_y}</wheelSeparation>
             <wheelDiameter>${2*wheel_radius}</wheelDiameter>
-            <torque>500.0</torque>
+            <torque>100.0</torque>
             <commandTopic>cmd_vel</commandTopic>
             <odometryTopic>odom</odometryTopic>
             <odometryFrame>odom</odometryFrame>

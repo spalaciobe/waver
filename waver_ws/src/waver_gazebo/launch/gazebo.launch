@@ -15,6 +15,5 @@
     </include>
 
     <node name="spawning_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model waver -param robot_description" />
-    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen" />
 
 </launch>
