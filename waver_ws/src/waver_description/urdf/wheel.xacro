@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wheels">
+
+    <xacro:include filename="$(find waver_description)/urdf/materials.xacro"/>
+    <xacro:include filename="$(find waver_description)/urdf/inertial_wheel.xacro" />
+
+    <xacro:macro name="wheel" params="prefix suffix xyz rpy">
+        <link name="${prefix}_${suffix}_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://waver_description/meshes/wheel_husky.stl"
+                        scale="1 1 1" />
+                </geometry>
+                <xacro:black_material />
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://waver_description/meshes/wheel_husky.stl"
+                        scale="1 1 1" />
+                </geometry>
+            </collision>
+            <xacro:inertial_wheel />
+        </link>
+
+        <joint name="${prefix}_${suffix}_joint" type="continuous">
+            <parent link="base_link" />
+            <child link="${prefix}_${suffix}_link" />
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <axis xyz="0 1 0" />
+        </joint>
+
+        <transmission name="${prefix}_${suffix}_wheel_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<actuator name="${prefix}_${suffix}_wheel_motor">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+			<joint name="${prefix}_${suffix}_joint">
+				<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+			</joint>
+		</transmission>
+
+        <gazebo reference="${prefix}_${suffix}_link">
+            <mu1 value="0.1" />
+            <mu2 value="0.1" />
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+    </xacro:macro>
+
+</robot>
