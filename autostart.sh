@@ -10,6 +10,8 @@ if [ $1 == "display" ]; then
     roslaunch waver_description display.launch
 elif [ $1 == "gazebo" ]; then
     roslaunch waver_gazebo gazebo.launch
+elif [ $1 == "controller" ]; then
+    roslaunch waver_description controller.launch
 elif [ $1 == "teleop" ]; then
     rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 fi
