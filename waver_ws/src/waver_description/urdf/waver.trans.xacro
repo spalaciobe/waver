@@ -1,46 +1,46 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver_transmission">
 
-  <transmission name="base_wbl_joint_tran">
+  <transmission name="wheel_back_left_joint_tran" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_wbl_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <joint name="wheel_back_left_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="base_wbl_joint_actr">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <actuator name="wheel_back_left_joint_actr">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
-  <transmission name="base_wfl_joint_tran">
+  <transmission name="wheel_front_left_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_wfl_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <joint name="wheel_front_left_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="base_wfl_joint_actr">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <actuator name="wheel_front_left_joint_actr">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
-  <transmission name="base_wfr_joint_tran">
+  <transmission name="wheel_front_right_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_wfr_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <joint name="wheel_front_right_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="base_wfr_joint_actr">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <actuator name="wheel_front_right_joint_actr">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
-  <transmission name="base_wbr_joint_tran">
+  <transmission name="wheel_back_right_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_wbr_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <joint name="wheel_back_right_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="base_wbr_joint_actr">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <actuator name="wheel_back_right_joint_actr">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
