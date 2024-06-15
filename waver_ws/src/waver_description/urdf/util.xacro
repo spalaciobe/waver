@@ -25,7 +25,7 @@
     <xacro:property name="pos_x_acces" value="-0.02246641731262207" />
     <xacro:property name="pos_y_acces" value="0.08693458557128907" />
     <xacro:property name="pos_z_acces" value="0.04861989974975586" />
-    <xacro:property name="mass_acces" value="0.017616158924187116" />
+    <xacro:property name="mass_acces" value="0.0017616158924187116" />
     <xacro:property name="mass_center_acces" value="${pos_x_acces} ${pos_y_acces} ${pos_z_acces}" />
     <xacro:property name="position_acces" value="${-pos_x_acces} ${-pos_y_acces} ${-pos_z_acces}" />
 
@@ -33,7 +33,7 @@
     <xacro:property name="pos_x_acces1" value="-0.002510018587112427" />
     <xacro:property name="pos_y_acces1" value="0.07360986328125002" />
     <xacro:property name="pos_z_acces1" value="0.035275302886962887" />
-    <xacro:property name="mass_acces1" value="0.021489822783274555" />
+    <xacro:property name="mass_acces1" value="0.0021489822783274555" />
     <xacro:property name="mass_center_acces1" value="${pos_x_acces1} ${pos_y_acces1} ${pos_z_acces1}" />
     <xacro:property name="position_acces1" value="${-pos_x_acces1} ${-pos_y_acces1} ${-pos_z_acces1}" />
 
@@ -41,7 +41,7 @@
     <xacro:property name="pos_x_board" value="-0.009815516471862793" />
     <xacro:property name="pos_y_board" value="0.009279213905334474" />
     <xacro:property name="pos_z_board" value="0.04129100418090821" />
-    <xacro:property name="mass_board" value="0.12365568710683028" />
+    <xacro:property name="mass_board" value="0.012365568710683028" />
     <xacro:property name="mass_center_board" value="${pos_x_board} ${pos_y_board} ${pos_z_board}" />
     <xacro:property name="position_board" value="${-pos_x_board} ${-pos_y_board} ${-pos_z_board}" />
 
@@ -49,7 +49,7 @@
     <xacro:property name="pos_x_screen" value="-6.735318456776441e-07" />
     <xacro:property name="pos_y_screen" value="0.05096461868286133" />
     <xacro:property name="pos_z_screen" value="0.048232952117919926" />
-    <xacro:property name="mass_screen" value="0.014091265350616076" />
+    <xacro:property name="mass_screen" value="0.0014091265350616076" />
     <xacro:property name="mass_center_screen" value="${pos_x_screen} ${pos_y_screen} ${pos_z_screen}" />
     <xacro:property name="position_screen" value="${-pos_x_screen} ${-pos_y_screen} ${-pos_z_screen}" />
 
