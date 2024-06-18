@@ -6,7 +6,6 @@ source ${PROJECT_ROOT}/config.sh
 xhost +local:root 
 docker container prune -f 
 docker run --privileged --rm -it \
-    --runtime=nvidia \
     --name $CONTAINER_NAME \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
