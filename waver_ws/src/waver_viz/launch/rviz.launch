@@ -1,0 +1,10 @@
+<launch>
+    <arg name="model" default="$(find waver_description)/urdf/waver.xacro" />
+    <arg name="gui" default="true" />
+    <arg name="rviz_config" default="$(find waver_viz)/rviz/waver.rviz" />
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    <param name="use_gui" value="$(arg gui)" />
+
+    <include file="$(find waver_description)/launch/description.launch" />
+    <node name="rviz" pkg="rviz" args="-d $(arg rviz_config)" type="rviz" required="true" />
+</launch>
