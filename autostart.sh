@@ -6,8 +6,8 @@ cd waver_ws && catkin_make
 
 source devel/setup.bash
 
-if [ $1 == "display" ]; then
-    roslaunch waver_description display.launch
+if [ $1 == "rviz" ]; then
+    roslaunch waver_viz rviz.launch
 elif [ $1 == "gazebo" ]; then
     roslaunch waver_gazebo gazebo.launch
 elif [ $1 == "controller" ]; then
