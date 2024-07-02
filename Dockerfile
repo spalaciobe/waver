@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get update && apt-get install -y \
     ros-noetic-navigation \
+    ros-noetic-slam-gmapping \
     ros-noetic-map-server \
     ros-noetic-amcl 
 
