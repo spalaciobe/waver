@@ -23,7 +23,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -83,6 +83,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        lidar_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         oled_screen_link:
           Alpha: 1
           Show Axes: false
@@ -132,9 +137,38 @@ Visualization Manager:
       Show Arrows: true
       Show Axes: true
       Show Names: true
-      Tree: {}
+      Tree:
+        {}
       Update Interval: 0
       Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.019999999552965164
+      Style: Flat Squares
+      Topic: /scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 208; 208; 208
@@ -163,7 +197,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.2039387226104736
+      Distance: 1.9578325748443604
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -171,17 +205,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.0016349668148905039
-        Y: -0.014781012199819088
-        Z: 0.017814036458730698
+        X: -0.14308440685272217
+        Y: 0.08546720445156097
+        Z: 0.09149210155010223
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5803967714309692
+      Pitch: 0.6797969937324524
       Target Frame: <Fixed Frame>
-      Yaw: 0.6435818076133728
+      Yaw: 0.6035829782485962
     Saved: ~
 Window Geometry:
   Displays:

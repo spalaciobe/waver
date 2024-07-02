@@ -2,13 +2,13 @@
 
 source /opt/ros/$ROS_DISTRO/setup.bash
 
-cd waver_ws && catkin_make
+cd waver_ws && catkin build
 
 source devel/setup.bash
 
 if [ $1 == "rviz" ]; then
     roslaunch waver_viz rviz.launch
-elif [ $1 == "gazebo" ]; then
+elif [ $1 == "gz" ]; then
     roslaunch waver_gazebo gazebo.launch
 elif [ $1 == "controller" ]; then
     roslaunch waver_description controller.launch
