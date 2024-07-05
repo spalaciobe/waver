@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="amcl" type="amcl" name="amcl" output="screen">
+        <rosparam file="$(find waver_nav)/param/amcl.yaml" command="load" />
+    </node>
+</launch>
