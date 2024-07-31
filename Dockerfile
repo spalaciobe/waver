@@ -1,6 +1,6 @@
 FROM osrf/ros:noetic-desktop-full
 
-RUN mkdir -p /waver_ws/src
+ENV WS=/waver_ws
 
 RUN apt update && apt install -y \
     python3-catkin-tools \
@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-amcl 
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
-RUN echo "/waver_ws/devel/setup.bash" >> ~/.bashrc
+RUN echo "source ${WS}/devel/setup.bash" >> ~/.bashrc
+RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash ; source ${WS}/devel/setup.bash'" >> ~/.bashrc
 
 COPY ./autostart.sh /
 RUN chmod +x /autostart.sh
