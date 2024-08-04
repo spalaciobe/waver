@@ -1,5 +1,5 @@
 invert_laser: false
-throttle_scans: 1 
+throttle_scans: 1
 base_frame: base_link
 map_frame: map
 odom_frame: odom
