@@ -4,9 +4,9 @@
     <arg name="rviz_config" default="$(find waver_nav)/rviz/waver.rviz" />
     <arg name="gui" default="true" />
 
-    <arg name="base_global_planner" default="navfn/NavfnROS" />
+    <arg name="base_global_planner" default="global_planner/GlobalPlanner" />
     <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS" />
-    <arg name="global" default="navfn" />
+    <arg name="global" default="base" />
     <arg name="local" default="dwa" />
 
     <!-- Gazebo node -->
