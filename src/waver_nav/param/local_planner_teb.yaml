@@ -1,10 +1,10 @@
 TebLocalPlannerROS:
   # Robot Configuration Parameters
-  acc_lim_x: 0.5
-  acc_lim_theta: 0.5
-  max_vel_x: 0.5
-  max_vel_x_backwards: 0.2
-  max_vel_theta: 0.3
+  acc_lim_x: 1.8
+  acc_lim_theta: 1.8
+  max_vel_x: 1.5
+  max_vel_x_backwards: 0.5
+  max_vel_theta: 3.14
   min_turning_radius: 0.0
   wheelbase: 0.09
   cmd_angle_instead_rotvel: false # ****
