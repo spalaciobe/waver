@@ -9,7 +9,7 @@ docker run --privileged --rm -it \
     --env="QT_X11_NO_MITSHM=1" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --volume="${PROJECT_ROOT}/src:/waver_ws/src" \
+    --volume="${PROJECT_ROOT}:/waver_ws/src" \
     --volume="$XAUTH:$XAUTH" \
     --net=host \
     -t \
