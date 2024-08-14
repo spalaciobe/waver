@@ -8,27 +8,62 @@ This repository contains a collection of ROS (Noetic) packages designed to be ex
 
 This project aims to create a low-cost robotic platform that serves as a base for implementing and testing complex packages and algorithms. It's designed to be accessible to both hobbyists and professionals, providing a flexible and expandable system for a wide range of robotics applications.
 
+### Packages
+
+ROS packages for Wave Rover, supporting both simulation and real robot use:
+
+- **`waver_description:`** URDF files for robot description. [See]()
+- **`waver_gazebo:`** Gazebo simulation integration. [See]()
+- **`waver_nav:`** Navigation capabilities. [See]()
+- **`waver_viz:`** RViz visualization tools. [See]()
+
 ### Key Features
 
-- **Low-Cost Implementation:** The project is designed to be an affordable solution (< $300 USD), providing a foundation for implementing and testing complex packages and algorithms.
+- **Low cost implementation:** The project is designed to be an affordable solution (< $300 USD), providing a foundation for implementing and testing complex packages and algorithms.
 
-- **Extensive Documentation:** Each package includes documentation to help users understand and implement the provided features.
+- **Extensive documentation:** Each package includes documentation to help users understand and implement the provided features.
 
-- **Cross-Platform Compatibility (Simulation):** The project supports Linux natively and Windows via Docker, specifically for simulation purposes. Efforts are ongoing to extend compatibility to macOS using Docker.
+- **Cross platform compatibility (Simulation):** The project supports Linux natively and Windows via Docker, specifically for simulation purposes. Efforts are ongoing to extend compatibility to macOS using Docker.
 
 ### Hardware Components
 
 | Component | Link |
 | :---: | :---: |
-| DTOF LiDAR LD19 | [See](https://www.waveshare.com/w/upload/e/e7/Lidar-01.jpg) |
-| Raspberry Pi 4 Model B (4GB RAM) | [See](https://www.waveshare.com/w/upload/c/cb/Raspberry-Pi-4-01.jpg) |
-| Wave Rover | [See](https://www.waveshare.com/w/upload/4/4e/Wave-Rover-1.jpg) |
+| DTOF LiDAR LD19 | [See](https://www.waveshare.com/dtof-lidar-ld19.htm) |
+| Raspberry Pi 4 Model B (4GB RAM) | [See](https://www.waveshare.com/product/raspberry-pi/boards-kits/raspberry-pi-4/raspberry-pi-4-model-b-4gb-ram.htm) |
+| Wave Rover | [See](https://www.waveshare.com/wave-rover.htm) |
 
-### Docker Setup
+### Docker
 
-### Packages
+The project includes scripts in the [scripts](https://github.com/GGomezMorales/waver/tree/noetic/scripts) folder to make Docker easier to use. These scripts handle tasks such as building the Docker image, running the container, and accessing the container's terminal.
 
-### Real Implementation
+1. **Building the Docker image:**
+   - Use the `build.sh` script to build the Docker image.
+     ```bash
+     ./scripts/build.sh
+     ```
+
+2. **Running the Docker container:**
+   - There are three ways to run a container, depending on your needs:
+     - **`run_docker.sh`:** Uses the standard Docker command to run the container.
+       ```bash
+       ./scripts/run_docker.sh
+       ```
+     - **`run_cpu.sh`:** Uses `rocker` to run the container on a CPU-only environment.
+       ```bash
+       ./scripts/run_cpu.sh
+       ```
+     - **`run_nvidia.sh`:** Uses `rocker` to run the container with NVIDIA GPU support.
+       ```bash
+       ./scripts/run_nvidia.sh
+       ```
+
+3. **Accessing the container's terminal:**
+   - If you need to access the terminal of the running Docker container, use the `bash.sh` script.
+     ```bash
+     ./scripts/bash.sh
+     ```
+
+<!-- ### Real Implementation
 #### Hardware Setup
-
-### Demos
+### Demos -->
