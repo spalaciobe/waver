@@ -13,9 +13,9 @@ This project aims to create a low-cost robotic platform that serves as a base fo
 ROS packages for Wave Rover, supporting both simulation and real robot use:
 
 - **`waver_description`**: URDF files for robot description. [See](https://github.com/GGomezMorales/waver/tree/noetic/waver_description)
-- **`waver_gazebo`**: Gazebo simulation integration. [See]()
-- **`waver_nav`**: Navigation capabilities. [See]()
-- **`waver_viz`**: RViz visualization tools. [See]()
+- **`waver_gazebo`**: Gazebo simulation integration. [See](https://github.com/GGomezMorales/waver/tree/noetic/waver_gazebo)
+- **`waver_nav`**: Navigation capabilities. [See](https://github.com/GGomezMorales/waver/tree/noetic/waver_nav)
+- **`waver_viz`**: RViz visualization tools. [See](https://github.com/GGomezMorales/waver/tree/noetic/waver_viz)
 
 ## Key features
 
@@ -31,9 +31,9 @@ ROS packages for Wave Rover, supporting both simulation and real robot use:
 | `Raspberry Pi 4 Model B (4GB RAM)` | [See](https://www.waveshare.com/product/raspberry-pi/boards-kits/raspberry-pi-4/raspberry-pi-4-model-b-4gb-ram.htm) |
 |            `Wave Rover`            |                                   [See](https://www.waveshare.com/wave-rover.htm)                                   |
 
-## [Docker Setup](https://docs.docker.com/get-docker/)
+## Docker setup
 
-### Installing Docker on Host Machine
+### Installing Docker on Host machine
 
 To install Docker on your host machine (Linux, Windows or macOS), follow the official Docker installation guide for your specific operating system:
 
