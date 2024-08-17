@@ -1,4 +1,4 @@
-<h1align="center">waver_rviz package</h1>
+<h1 align="center">waver_rviz package</h1>
 
 ## Overview
 
@@ -50,7 +50,7 @@ Before using the `waver_rviz` package, ensure you have the following installed:
    sros
    ```
 
-5. RViz launch
+5. RViz launch:
    Finally, to launch the RViz visualization with the Wave Rover, use the following command:
    ```bash
    roslaunch waver_viz rviz.launch
