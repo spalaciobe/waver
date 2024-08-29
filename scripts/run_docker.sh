@@ -5,13 +5,14 @@ source ${PROJECT_ROOT}/config.sh
 
 docker run --privileged --rm -it \
     --name $CONTAINER_NAME \
-    --env="DISPLAY=$DISPLAY" \
-    --env="QT_X11_NO_MITSHM=1" \
-    --env="XAUTHORITY=$XAUTH" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --volume="${PROJECT_ROOT}:/waver_ws/src" \
-    --volume="$XAUTH:$XAUTH" \
+    -e DISPLAY \
+    -e TERM \
+    -e QT_X11_NO_MITSHM=1 \
+    -e XAUTHORITY \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $XAUTHORITY:$XAUTHORITY \
+    -v ${PROJECT_ROOT}:/waver_ws/src \
     --net=host \
     -t \
     ${DOCKER_IMAGE_NAME} 
-    
