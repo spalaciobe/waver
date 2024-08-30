@@ -7,41 +7,42 @@ source ${PROJECT_ROOT}/config.sh
 
 cd "$PROJECT_ROOT"
 
-OS_TYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
-ARCH_TYPE=$(uname -m)
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m)
 
-if [ "$OS_TYPE" == "darwin" ]; then
-    if [ "$ARCH_TYPE" == "x86_64" ]; then
+if [ "$OS" == "darwin" ]; then
+    if [ "$ARCH" == "x86_64" ]; then
         IMAGE=${VNC_IMAGE}
-    elif [ "$ARCH_TYPE" == "arm64" ]; then
+    elif [ "$ARCH" == "arm64" ]; then
         IMAGE=${MAC_IMAGE}
     else
-        echo "Unsupported Arch type: $ARCH_TYPE"
+        echo "Unsupported Arch type: $ARCH"
         exit 1
     fi
-elif [ "$OS_TYPE" == "linux" ]; then
-    if [ "$ARCH_TYPE" == "x86_64" ]; then
+elif [ "$OS" == "linux" ]; then
+    if [ "$ARCH" == "x86_64" ]; then
         IMAGE=${ROS_IMAGE}
-    elif [ "$ARCH_TYPE" == "aarch64" ]; then
+    elif [ "$ARCH" == "aarch64" ]; then
         IMAGE=${ROS_IMAGE}
-    elif [ "$ARCH_TYPE" == "arm64" ]; then
+    elif [ "$ARCH" == "arm64" ]; then
         IMAGE=${MAC_IMAGE}
     else
-        echo "Unsupported Arch type: $ARCH_TYPE"
+        echo "Unsupported Arch type: $ARCH"
         exit 1
     fi
-elif [ "$OS_TYPE" == "windows" ]; then
-    if [ "$ARCH_TYPE" == "x86_64" ]; then
+elif [ "$(uname -o | tr '[:upper:]' '[:lower:]')" == "msys" ]; then
+    OS=$(uname -o | tr '[:upper:]' '[:lower:]')
+    if [ "$ARCH" == "x86_64" ]; then
         IMAGE=${VNC_IMAGE}
-    elif [ "$ARCH_TYPE" == "arm64" ]; then
+    elif [ "$ARCH" == "arm64" ]; then
         IMAGE=${MAC_IMAGE}
     else
-        echo "Unsupported Arch type: $ARCH_TYPE"
+        echo "Unsupported Arch type: $ARCH"
         exit 1
     fi
 else
-    echo "Unsupported OS type: $OS_TYPE"
+    echo "Unsupported OS type: $OS"
     exit 1
 fi
 
-docker build --build-arg IMAGE=${IMAGE} --build-arg OS=${OS_TYPE} -t ${DOCKER_IMAGE_NAME} .
+docker build --build-arg IMAGE=${IMAGE} --build-arg OS=${OS} --build-arg WS=${WS} -t ${DOCKER_IMAGE_NAME} .

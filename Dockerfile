@@ -3,7 +3,8 @@ ARG OS="linux"
 
 FROM ${IMAGE}
 
-ENV WS=/waver_ws
+ARG WS
+ENV WS=${WS}
 WORKDIR ${WS}
 
 RUN apt update && apt install -y \
