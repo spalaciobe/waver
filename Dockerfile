@@ -4,17 +4,27 @@ ARG OS="linux"
 FROM ${IMAGE}
 
 ARG WS
+ENV DEBIAN_FRONTEND=noninteractive
+ENV RESOLUTION=1920x1080
+ENV ROS_DISTRO=noetic
+ENV USER=root
 ENV WS=${WS}
 WORKDIR ${WS}
 
 RUN apt update && apt install -y \
     python3-catkin-tools \
     python3-rosinstall \
+    wget \
+    curl \
     git \
     nano \
     graphviz \
     iputils-ping \
     net-tools
+
+RUN wget https://raw.githubusercontent.com/roboticamed/docker_ros_vnc/main/install_ros_noetic.sh && \
+    chmod +x ${WS}/install_ros_noetic.sh && \
+    if [ ${OS} != "linux" ]; then ${WS}/install_ros_noetic.sh ${ROS_DISTRO} ${WS}; fi
 
 RUN apt-get update && apt-get install -y \
     ros-${ROS_DISTRO}-teleop-twist-keyboard \
