@@ -1,4 +1,7 @@
-FROM osrf/ros:noetic-desktop-full
+ARG IMAGE="osrf/ros:noetic-desktop-full"
+ARG OS="linux"
+
+FROM ${IMAGE}
 
 ENV WS=/waver_ws
 WORKDIR ${WS}
@@ -13,18 +16,18 @@ RUN apt update && apt install -y \
     net-tools
 
 RUN apt-get update && apt-get install -y \
-    ros-noetic-teleop-twist-keyboard \
-    ros-noetic-catkin \
-    ros-noetic-urdf \
-    ros-noetic-xacro \
-    ros-noetic-tf2-tools
+    ros-${ROS_DISTRO}-teleop-twist-keyboard \
+    ros-${ROS_DISTRO}-catkin \
+    ros-${ROS_DISTRO}-urdf \
+    ros-${ROS_DISTRO}-xacro \
+    ros-${ROS_DISTRO}-tf2-tools
 
 RUN apt-get update && apt-get install -y \
-    ros-noetic-navigation \
-    ros-noetic-slam-gmapping \
-    ros-noetic-map-server \
-    ros-noetic-amcl \
-    ros-noetic-teb-local-planner
+    ros-${ROS_DISTRO}-navigation \
+    ros-${ROS_DISTRO}-slam-gmapping \
+    ros-${ROS_DISTRO}-map-server \
+    ros-${ROS_DISTRO}-amcl \
+    ros-${ROS_DISTRO}-teb-local-planner
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 RUN echo "source ${WS}/devel/setup.bash" >> ~/.bashrc
