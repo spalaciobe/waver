@@ -1,15 +1,25 @@
 ARG IMAGE="osrf/ros:noetic-desktop-full"
-ARG OS="linux"
 
 FROM ${IMAGE}
 
-ARG WS
+ARG OS
+ARG WS_ROS
 ENV DEBIAN_FRONTEND=noninteractive
-ENV RESOLUTION=1920x1080
+ENV RESOLUTION=1820x880
 ENV ROS_DISTRO=noetic
 ENV USER=root
-ENV WS=${WS}
+ENV WS=/${WS_ROS}
 WORKDIR ${WS}
+
+RUN if [ "${OS}" != "linux" ]; then \
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2 && \
+        apt update && \
+        apt install wget -y && \
+        wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_noetic.sh && \
+        wget https://raw.githubusercontent.com/GGomezMorales/robotis_tools/master/sros.sh && \
+        chmod +x install_ros_noetic.sh sros.sh && \
+        ./install_ros_noetic.sh; \
+    fi
 
 RUN apt update && apt install -y \
     python3-catkin-tools \
@@ -21,10 +31,6 @@ RUN apt update && apt install -y \
     graphviz \
     iputils-ping \
     net-tools
-
-RUN wget https://raw.githubusercontent.com/roboticamed/docker_ros_vnc/main/install_ros_noetic.sh && \
-    chmod +x ${WS}/install_ros_noetic.sh && \
-    if [ ${OS} != "linux" ]; then ${WS}/install_ros_noetic.sh ${ROS_DISTRO} ${WS}; fi
 
 RUN apt-get update && apt-get install -y \
     ros-${ROS_DISTRO}-teleop-twist-keyboard \
