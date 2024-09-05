@@ -31,7 +31,7 @@
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="board_link">
+  <gazebo reference="imu_link">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <selfCollide>false</selfCollide>
