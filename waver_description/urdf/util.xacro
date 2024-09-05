@@ -43,14 +43,14 @@
     <xacro:property name="position_acces1" value="${pos_y_acces1} ${-pos_x_acces1} ${-pos_z_acces1}" />
     <xacro:property name="positions_acces1_joint" value="${-pos_y_acces1} ${pos_x_acces1} ${pos_z_acces1}"/>
 
-    <!-- Board speficications -->
-    <xacro:property name="pos_x_board" value="-0.009815516471862793" />
-    <xacro:property name="pos_y_board" value="0.009279213905334474" />
-    <xacro:property name="pos_z_board" value="0.04129100418090821" />
-    <xacro:property name="mass_board" value="0.012365568710683028" />
-    <xacro:property name="mass_center_board" value="${pos_x_board} ${pos_y_board} ${pos_z_board}" />
-    <xacro:property name="position_board" value="${pos_y_board} ${-pos_x_board} ${-pos_z_board}" />
-    <xacro:property name="positions_board_joint" value="${-pos_y_board} ${pos_x_board} ${pos_z_board}"/>
+    <!-- IMU speficications -->
+    <xacro:property name="pos_x_imu" value="-0.009815516471862793" />
+    <xacro:property name="pos_y_imu" value="0.009279213905334474" />
+    <xacro:property name="pos_z_imu" value="0.04129100418090821" />
+    <xacro:property name="mass_imu" value="0.012365568710683028" />
+    <xacro:property name="mass_center_imu" value="${pos_x_imu} ${pos_y_imu} ${pos_z_imu}" />
+    <xacro:property name="position_imu" value="${pos_y_imu} ${-pos_x_imu} ${-pos_z_imu}" />
+    <xacro:property name="positions_imu_joint" value="${-pos_y_imu} ${pos_x_imu} ${pos_z_imu}"/>
 
     <!-- Oled Screen speficications -->
     <xacro:property name="pos_x_screen" value="-6.735318456776441e-07" />

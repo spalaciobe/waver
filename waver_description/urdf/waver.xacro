@@ -6,6 +6,7 @@
   <xacro:include filename="$(find waver_description)/urdf/waver.trans.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/waver.gazebo.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/lidar.xacro" />
+  <xacro:include filename="$(find waver_description)/urdf/imu.xacro" />
 
   <!-- ******************************* Links ******************************* -->
 
@@ -91,27 +92,6 @@
       <origin xyz="${position_acces1}" rpy="0 0 ${pi/2}" />
       <geometry>
         <mesh filename="package://waver_description/meshes/accessories1_link.stl" scale="${scale}" />
-      </geometry>
-    </collision>
-  </link>
-
-  <link name="board_link">
-    <inertial>
-      <mass value="${mass_board}" />
-      <origin xyz="${mass_center_board}" rpy="0 0 ${pi/2}" />
-      <inertia ixx="5.313564367625195e-06" iyy="5.192849578266062e-06" izz="8.832425081682543e-06" ixy="0.0" iyz="0.0" ixz="0.0" />
-    </inertial>
-    <visual>
-      <origin xyz="${position_board}" rpy="0 0 ${pi/2}" />
-      <geometry>
-        <mesh filename="package://waver_description/meshes/board_link.stl" scale="${scale}" />
-      </geometry>
-      <xacro:dark_green_material />
-    </visual>
-    <collision>
-      <origin xyz="${position_board}" rpy="0 0 ${pi/2}" />
-      <geometry>
-        <mesh filename="package://waver_description/meshes/board_link.stl" scale="${scale}" />
       </geometry>
     </collision>
   </link>
@@ -246,12 +226,6 @@
     <origin xyz="${positions_acces1_joint}" rpy="0 0 0" />
     <parent link="top_shell_link" />
     <child link="accessories1_link" />
-  </joint>
-
-  <joint name="top_board_joint" type="fixed">
-    <origin xyz="${positions_board_joint}" rpy="0 0 0" />
-    <parent link="top_shell_link" />
-    <child link="board_link" />
   </joint>
 
   <joint name="top_screen_joint" type="fixed">
