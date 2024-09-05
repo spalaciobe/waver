@@ -49,15 +49,8 @@ docker --version
 
 To access graphical interfaces like Gazebo and RViz in Docker on Windows and macOS, you will need to use a VNC viewer. This tool allows you to view and interact with these interfaces through a remote desktop environment. For Linux users, this step is not required as graphical interfaces can be accessed directly from the Docker container without additional tools.
 
-Below are the resources and instructions for setting up and using VNC viewers on Windows and macOS:
+For resources and instructions on how to set up and use VNC viewers on Windows and macOS to run this project, follow the detailed guide provided [here](https://github.com/roboticamed/docker_ros_vnc?tab=readme-ov-file#docker-ros-noetic-vnc)
 
-#### Windows
-
-Steps
-
-#### macOS
-
-Steps
 
 ### Installing Docker on Raspberry PI
 
