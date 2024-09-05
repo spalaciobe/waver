@@ -12,9 +12,10 @@ ENV WS=/${WS_ROS}
 WORKDIR ${WS}
 
 RUN if [ "${OS}" != "linux" ]; then \
-        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2 && \
+        cd /root && \
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2; \
         apt update && \
-        apt install wget -y && \
+        apt install wget dirmngr gnupg2 -y && \
         wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_noetic.sh && \
         wget https://raw.githubusercontent.com/GGomezMorales/robotis_tools/master/sros.sh && \
         chmod +x install_ros_noetic.sh sros.sh && \
@@ -24,8 +25,6 @@ RUN if [ "${OS}" != "linux" ]; then \
 RUN apt update && apt install -y \
     python3-catkin-tools \
     python3-rosinstall \
-    wget \
-    curl \
     git \
     nano \
     graphviz \
@@ -49,3 +48,4 @@ RUN apt-get update && apt-get install -y \
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 RUN echo "source ${WS}/devel/setup.bash" >> ~/.bashrc
 RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash ; catkin build ; source ${WS}/devel/setup.bash'" >> ~/.bashrc
+RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> ~/.bashrc
