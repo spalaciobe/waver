@@ -12,13 +12,11 @@ ENV WS=/${WS_ROS}
 WORKDIR ${WS}
 
 RUN if [ "${OS}" != "linux" ]; then \
-        cd /root && \
         apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2; \
         apt update && \
         apt install wget dirmngr gnupg2 -y && \
         wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_noetic.sh && \
-        wget https://raw.githubusercontent.com/GGomezMorales/robotis_tools/master/sros.sh && \
-        chmod +x install_ros_noetic.sh sros.sh && \
+        chmod +x install_ros_noetic.sh && \
         ./install_ros_noetic.sh; \
     fi
 
@@ -45,7 +43,8 @@ RUN apt-get update && apt-get install -y \
     ros-${ROS_DISTRO}-amcl \
     ros-${ROS_DISTRO}-teb-local-planner
 
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
-RUN echo "source ${WS}/devel/setup.bash" >> ~/.bashrc
-RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash ; catkin build ; source ${WS}/devel/setup.bash'" >> ~/.bashrc
-RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> ~/.bashrc
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+RUN echo "source ${WS}/devel/setup.bash" >> /root/.bashrc
+RUN echo "alias bros='cd ${WS} && catkin build'" >> /root/.bashrc
+RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> /root/.bashrc
+RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/devel/setup.bash'" >> /root/.bashrc
