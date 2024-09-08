@@ -13,7 +13,7 @@ if [ "$OS_SIMPLE" == "d" ] || [ "$OS_SIMPLE" == "m" ]; then
         --mount type=bind,source=${PROJECT_ROOT}/,target=/${WS_ROS}/src/ \
         ${DOCKER_IMAGE_NAME}
 else
-    docker run --privileged --rm -it --gpus all \
+    docker run --privileged --rm -it \
         --name $CONTAINER_NAME \
         -e DISPLAY \
         -e TERM \
