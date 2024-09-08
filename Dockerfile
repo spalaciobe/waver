@@ -5,7 +5,6 @@ FROM ${IMAGE}
 ARG OS
 ARG WS_ROS
 ENV DEBIAN_FRONTEND=noninteractive
-ENV RESOLUTION=1820x880
 ENV ROS_DISTRO=noetic
 ENV USER=root
 ENV WS=/${WS_ROS}
@@ -43,8 +42,17 @@ RUN apt-get update && apt-get install -y \
     ros-${ROS_DISTRO}-amcl \
     ros-${ROS_DISTRO}-teb-local-planner
 
+USER root
+ENV RESOLUTION=1820x880
+
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
 RUN echo "source ${WS}/devel/setup.bash" >> /root/.bashrc
 RUN echo "alias bros='cd ${WS} && catkin build'" >> /root/.bashrc
 RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> /root/.bashrc
 RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/devel/setup.bash'" >> /root/.bashrc
+
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+RUN echo "source ${WS}/devel/setup.bash" >> ~/.bashrc
+RUN echo "alias bros='cd ${WS} && catkin build'" >> ~/.bashrc
+RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> ~/.bashrc
+RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/devel/setup.bash'" >> ~/.bashrc

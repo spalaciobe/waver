@@ -22,7 +22,7 @@ else
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v $XAUTHORITY:$XAUTHORITY \
         --net=host \
-        --mount type=bind,source=${PROJECT_ROOT}/,target=/${WS_ROS}/src/ \
+        --volume="${PROJECT_ROOT}:/${WS_ROS}/src" \
         -t \
         ${DOCKER_IMAGE_NAME} 
 fi
