@@ -1017,10 +1017,10 @@
       <static>1</static>
     </model>
     <state world_name='default'>
-      <sim_time>898 289000000</sim_time>
-      <real_time>50 90291849</real_time>
-      <wall_time>1719882286 519139643</wall_time>
-      <iterations>50007</iterations>
+      <sim_time>1004 779000000</sim_time>
+      <real_time>106 784545508</real_time>
+      <wall_time>1726188639 52801441</wall_time>
+      <iterations>106490</iterations>
       <model name='coworking'>
         <pose>2.38403 0.05028 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -2192,7 +2192,7 @@
     </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-0.046082 -17.66 10.6632 0 0.587644 1.34182</pose>
+        <pose>2.66549 3.27419 2.60446 -0 0.573799 -2.33601</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
