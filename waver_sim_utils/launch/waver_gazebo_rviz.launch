@@ -6,11 +6,6 @@
 
     <arg name="world_name" default="$(find waver_gazebo)/world/coworking.world" />
 
-    <arg name="base_global_planner" default="global_planner/GlobalPlanner" />
-    <arg name="base_local_planner" default="teb_local_planner/TebLocalPlannerROS" />
-    <arg name="global" default="base" />
-    <arg name="local" default="teb" />
-
     <!-- Gazebo launch -->
     <include file="$(find waver_gazebo)/launch/gazebo.launch">
         <arg name="world_name" value="$(arg world_name)" />
@@ -31,11 +26,4 @@
     <!-- AMCL launch -->
     <include file="$(find waver_nav)/launch/amcl.launch" />
 
-    <!-- Move base launch -->
-    <include file="$(find waver_nav)/launch/move_base.launch" >
-        <arg name="base_global_planner" value="$(arg base_global_planner)" />
-        <arg name="base_local_planner" value="$(arg base_local_planner)" />
-        <arg name="global" value="$(arg global)" />
-        <arg name="local" value="$(arg local)" />
-    </include>
 </launch>
